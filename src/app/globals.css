@@ -1,0 +1,149 @@
+@import "tailwindcss";
+@import "@heroui/styles";
+
+:root {
+  --color-primary: #ff5c00;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #ffe5d9;
+  --color-on-primary-container: #521800;
+  --color-surface: #ffffff;
+  --color-on-surface: #191c1d;
+  --color-surface-container: #f5f5f5;
+  --color-surface-container-high: #e5e5e5;
+  --color-on-surface-variant: #5f6368;
+  --color-outline: #cbd5e1;
+  --color-background: #ffffff;
+  --color-on-background: #191c1d;
+  --color-card: #ffffff;
+}
+
+.dark {
+  --color-primary: #ff5c00;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #ff5c00;
+  --color-on-primary-container: #521800;
+  --color-surface: #191c1d;
+  --color-on-surface: #f8f9fa;
+  --color-surface-container: #2e3132;
+  --color-surface-container-high: #3f4243;
+  --color-on-surface-variant: #e4beb1;
+  --color-outline: #8f7065;
+  --color-background: #191c1d;
+  --color-on-background: #f8f9fa;
+  --color-card: #1f2223;
+}
+
+@theme {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  --color-primary: var(--color-primary);
+  --color-on-primary: var(--color-on-primary);
+  --color-primary-container: var(--color-primary-container);
+  --color-on-primary-container: var(--color-on-primary-container);
+  --color-surface: var(--color-surface);
+  --color-on-surface: var(--color-on-surface);
+  --color-surface-container: var(--color-surface-container);
+  --color-surface-container-high: var(--color-surface-container-high);
+  --color-on-surface-variant: var(--color-on-surface-variant);
+  --color-outline: var(--color-outline);
+  --color-background: var(--color-background);
+  --color-on-background: var(--color-on-background);
+  --color-card: var(--color-card);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hero-gradient {
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(255, 92, 0, 0.12),
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at bottom left,
+      rgba(255, 92, 0, 0.04),
+      transparent 40%
+    );
+}
+
+.text-gradient {
+  background: linear-gradient(to right, #ff5c00, #ffb59a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+  will-change: transform;
+}
+
+.panel-bg-animated {
+  background:
+    radial-gradient(
+      circle at 15% 15%,
+      rgba(255, 92, 0, 0.05) 0%,
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 85% 85%,
+      rgba(255, 92, 0, 0.03) 0%,
+      transparent 35%
+    ),
+    var(--color-background);
+}
+
+/* Custom Premium Scrollbar Styles */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 92, 0, 0.15);
+  border-radius: 99px;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 92, 0, 0.45);
+  border: 1px solid transparent;
+  background-clip: padding-box;
+}
+
+/* Firefox scrollbar support */
+@supports (scrollbar-width: thin) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 92, 0, 0.15) transparent;
+  }
+}
+
+/* Utility to hide scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}

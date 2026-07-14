@@ -1,0 +1,28 @@
+{
+  "name": "Baki - Catálogo Digital",
+  "short_name": "Baki",
+  "description": "Crea y comparte catálogos digitales profesionales en segundos. Gratis para emprendedores.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#ff4f00",
+  "orientation": "portrait",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "lang": "es-LA",
+  "categories": ["business", "shopping", "lifestyle"],
+  "prefer_related_applications": false
+}
