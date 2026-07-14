@@ -54,7 +54,7 @@ export default async function BakiBotPage({ params }: PageProps) {
     .maybeSingle();
 
   if (commerceError || !commerce) {
-    redirect("/panel");
+    redirect("/");
   }
 
   // Fetch active subscription for the commerce

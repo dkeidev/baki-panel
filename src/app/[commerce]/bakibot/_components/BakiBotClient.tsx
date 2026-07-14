@@ -210,7 +210,7 @@ export default function BakiBotClient({
           </p>
           <div>
             <a
-              href={`/panel/${commerce.slug}/store`}
+              href={`/${commerce.slug}/store`}
               className="inline-flex items-center justify-center px-4 py-2 bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold rounded-xl shadow-md transition-all"
             >
               Asegurar Plan Fundador
@@ -316,7 +316,7 @@ export default function BakiBotClient({
                   </p>
                   <div>
                     <a
-                      href={`/panel/${commerce.slug}/store`}
+                      href={`/${commerce.slug}/store`}
                       className="inline-flex items-center justify-center px-5 py-2.5 bg-primary text-on-primary hover:bg-primary/95 text-xs font-bold rounded-xl shadow-md transition-all"
                     >
                       Actualizar Plan en Ajustes

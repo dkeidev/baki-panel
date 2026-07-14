@@ -65,7 +65,7 @@ export async function addCategory(commerceId: string, name: string, commerceSlug
     return { error: "No se pudo crear la categoría. Inténtalo de nuevo." };
   }
 
-  revalidatePath(`/panel/${commerceSlug}/products`);
+  revalidatePath(`/${commerceSlug}/products`);
   return { success: true };
 }
 
@@ -78,7 +78,7 @@ export async function deleteCategory(categoryId: string, commerceSlug: string) {
     return { error: "No se pudo eliminar la categoría." };
   }
 
-  revalidatePath(`/panel/${commerceSlug}/products`);
+  revalidatePath(`/${commerceSlug}/products`);
   return { success: true };
 }
 
@@ -153,7 +153,7 @@ export async function addProduct(
     return { error: "No se pudo crear el producto. Inténtalo de nuevo." };
   }
 
-  revalidatePath("/panel/[commerce]/products", "page");
+  revalidatePath("/[commerce]/products", "page");
   return { success: true };
 }
 
@@ -212,7 +212,7 @@ export async function editProduct(
     return { error: "No se pudo actualizar el producto. Inténtalo de nuevo." };
   }
 
-  revalidatePath(`/panel/${commerceSlug}/products`);
+  revalidatePath(`/${commerceSlug}/products`);
   return { success: true };
 }
 
@@ -256,7 +256,7 @@ export async function toggleProductVisibility(
     throw new Error("No se pudo cambiar la visibilidad del producto.");
   }
 
-  revalidatePath(`/panel/${commerceSlug}/products`);
+  revalidatePath(`/${commerceSlug}/products`);
 }
 
 export async function deleteProduct(productId: string, commerceSlug: string) {
@@ -270,5 +270,5 @@ export async function deleteProduct(productId: string, commerceSlug: string) {
     throw new Error("No se pudo eliminar el producto.");
   }
 
-  revalidatePath(`/panel/${commerceSlug}/products`);
+  revalidatePath(`/${commerceSlug}/products`);
 }

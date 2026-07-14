@@ -5,9 +5,8 @@ import { NextResponse } from "next/server";
 export async function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
-  // 1. Skip middleware logic for static assets and public landing pages
+  // 1. Skip middleware logic for static assets
   if (
-    pathname === "/" ||
     pathname.startsWith("/_next") ||
     pathname.startsWith("/api") ||
     pathname.startsWith("/static") ||
@@ -62,50 +61,54 @@ export async function proxy(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  // 3. Validation routing rules
-  const isOnboardingPath = pathname.startsWith("/auth/onboarding");
-  const isPanelPath = pathname.startsWith("/panel");
+  // 3. Define public-only and auth-only paths
   const isLoginPath = pathname === "/auth/login";
+  const isCallbackPath = pathname.startsWith("/auth/callback");
+  const isOnboardingPath = pathname.startsWith("/auth/onboarding");
+  const isPublicPath = isLoginPath || isCallbackPath;
 
-  if (isLoginPath) {
-    if (user) {
-      return NextResponse.redirect(new URL("/panel", request.url));
+  // Allow public paths unconditionally
+  if (isPublicPath) {
+    // If already logged in and going to login, redirect to root
+    if (isLoginPath && user) {
+      return NextResponse.redirect(new URL("/", request.url));
     }
     return response;
   }
 
-  if (isPanelPath || isOnboardingPath) {
-    if (!user) {
-      return NextResponse.redirect(
-        new URL(
-          "/auth/login?error=Debes+iniciar+sesión+para+acceder.",
-          request.url,
-        ),
-      );
-    }
+  // All other routes require authentication
+  if (!user) {
+    return NextResponse.redirect(
+      new URL(
+        "/auth/login?error=Debes+iniciar+sesión+para+acceder.",
+        request.url,
+      ),
+    );
+  }
 
-    // Query onboarding status from DB
-    const { data: profile } = await supabase
-      .from("profiles")
-      .select("username")
-      .eq("id", user.id)
-      .maybeSingle();
+  // Check onboarding status for authenticated users
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("username")
+    .eq("id", user.id)
+    .maybeSingle();
 
-    const { count: commerceCount } = await supabase
-      .from("commerces")
-      .select("id", { count: "exact", head: true })
-      .eq("profile_id", user.id);
+  const { count: commerceCount } = await supabase
+    .from("commerces")
+    .select("id", { count: "exact", head: true })
+    .eq("profile_id", user.id);
 
-    const hasCompletedOnboarding =
-      !!profile?.username && (commerceCount || 0) > 0;
+  const hasCompletedOnboarding =
+    !!profile?.username && (commerceCount || 0) > 0;
 
-    if (isPanelPath && !hasCompletedOnboarding) {
-      return NextResponse.redirect(new URL("/auth/onboarding", request.url));
-    }
+  // If accessing onboarding but already completed it, redirect to root
+  if (isOnboardingPath && hasCompletedOnboarding) {
+    return NextResponse.redirect(new URL("/", request.url));
+  }
 
-    if (isOnboardingPath && hasCompletedOnboarding) {
-      return NextResponse.redirect(new URL("/panel", request.url));
-    }
+  // If accessing non-onboarding routes but hasn't completed onboarding
+  if (!isOnboardingPath && !hasCompletedOnboarding) {
+    return NextResponse.redirect(new URL("/auth/onboarding", request.url));
   }
 
   return response;

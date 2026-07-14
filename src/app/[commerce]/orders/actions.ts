@@ -81,7 +81,7 @@ export async function updateOrderStatus(orderId: string, status: string, commerc
     }
   }
 
-  revalidatePath(`/panel/${commerceSlug}/orders`);
+  revalidatePath(`/${commerceSlug}/orders`);
   return { success: true };
 }
 
@@ -115,7 +115,7 @@ export async function uploadPaymentProofAction(
       return { error: "No se pudo guardar el comprobante en el pedido." };
     }
 
-    revalidatePath(`/panel/${commerceSlug}/orders`);
+    revalidatePath(`/${commerceSlug}/orders`);
     return { success: true };
   } catch (err: any) {
     return { error: err.message || "Error al subir el comprobante." };
@@ -201,6 +201,6 @@ export async function createManualOrder(
     }
   }
 
-  revalidatePath(`/panel/${commerceSlug}/orders`);
+  revalidatePath(`/${commerceSlug}/orders`);
   return { success: true };
 }

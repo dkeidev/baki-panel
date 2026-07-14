@@ -68,7 +68,7 @@ export default function StoreClient({ commerce }: StoreClientProps) {
         if (res.newSlug && res.newSlug !== commerce.slug) {
           // If slug changed, redirect to the new route
           setTimeout(() => {
-            router.push(`/panel/${res.newSlug}/store`);
+            router.push(`/${commerce.slug}/store`);
           }, 1000);
         }
       }

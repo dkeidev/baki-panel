@@ -30,7 +30,7 @@ export default async function OrdersPage({ params }: PageProps) {
     .maybeSingle();
 
   if (commerceError || !commerce) {
-    redirect("/panel");
+    redirect("/");
   }
 
   // Fetch all orders for this commerce along with items and product details

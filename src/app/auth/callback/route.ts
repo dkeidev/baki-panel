@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 export async function GET(request: Request) {
   const requestUrl = new URL(request.url);
   const code = requestUrl.searchParams.get("code");
-  const next = requestUrl.searchParams.get("next") ?? "/panel";
+  const next = requestUrl.searchParams.get("next") ?? "/";
 
   // Obtener el origen correcto considerando headers de proxy (Vercel, Nginx, Cloudflare, etc.)
   const forwardedHost = request.headers.get("x-forwarded-host");
@@ -42,5 +42,5 @@ export async function GET(request: Request) {
     }
   }
 
-  return NextResponse.redirect(`${origin}/panel`);
+  return NextResponse.redirect(`${origin}/`);
 }

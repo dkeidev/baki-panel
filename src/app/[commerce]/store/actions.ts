@@ -110,7 +110,7 @@ export async function updateStore(
     return { error: "No se pudieron guardar los cambios. Inténtalo de nuevo." };
   }
 
-  revalidatePath(`/panel/${cleanSlug}/store`);
+  revalidatePath(`/${cleanSlug}/store`);
   revalidatePath(`/${cleanSlug}`);
 
   return { success: true, newSlug: cleanSlug };

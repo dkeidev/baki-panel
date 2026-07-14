@@ -69,25 +69,25 @@ export default function Sidebar({
     ? [
         {
           name: "Productos",
-          href: `/panel/${commerceSlug}/products`,
+          href: `/${commerceSlug}/products`,
           icon: Package,
         },
         {
           name: "Pedidos",
-          href: `/panel/${commerceSlug}/orders`,
+          href: `/${commerceSlug}/orders`,
           icon: ShoppingCart,
         },
         ...(planType !== "free"
           ? [
               {
                 name: "Baki Bot",
-                href: `/panel/${commerceSlug}/bakibot`,
+                href: `/${commerceSlug}/bakibot`,
                 icon: Bot,
               },
             ]
           : []),
       ]
-    : [{ name: "Mis Tiendas", href: "/panel", icon: Store }];
+    : [{ name: "Mis Tiendas", href: "/", icon: Store }];
 
   const SidebarContent = ({ isMobile = false }: { isMobile?: boolean }) => (
     <div
@@ -104,7 +104,7 @@ export default function Sidebar({
           {commerceSlug ? (
             collapsed && !isMobile ? (
               <Link
-                href={`/panel/${commerceSlug}/store`}
+                href={`/${commerceSlug}/store`}
                 onClick={() => setMobileOpen(false)}
                 className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 hover:border-primary/40 flex items-center justify-center text-primary font-black text-sm mx-auto transition-all cursor-pointer flex-shrink-0"
                 title="Ajustes de la Tienda"
@@ -130,7 +130,7 @@ export default function Sidebar({
 
                 {(!collapsed || isMobile) && (
                   <Link
-                    href={`/panel/${commerceSlug}/store`}
+                    href={`/${commerceSlug}/store`}
                     onClick={() => setMobileOpen(false)}
                     className="p-1.5 text-on-surface-variant hover:text-primary hover:bg-primary/5 rounded-lg transition-colors flex-shrink-0"
                     title="Ajustes de la Tienda"
@@ -142,7 +142,7 @@ export default function Sidebar({
             )
           ) : (
             <Link
-              href="/panel"
+              href="/"
               className={`flex items-center overflow-hidden ${
                 collapsed && !isMobile
                   ? "w-10 h-10 justify-center mx-auto"
@@ -261,7 +261,7 @@ export default function Sidebar({
     <>
       {/* Mobile Top Bar */}
       <div className="md:hidden flex h-14 items-center justify-between px-6 bg-card border-b border-outline/10 text-on-surface sticky top-0 z-30">
-        <Link href="/panel" className="flex items-center gap-2.5">
+        <Link href="/" className="flex items-center gap-2.5">
           <BakiIcon width={28} height={28} color="#FF5C00" />
           <span className="text-base font-black tracking-tight text-on-surface">
             Baki

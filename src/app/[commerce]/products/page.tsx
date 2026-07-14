@@ -30,7 +30,7 @@ export default async function ProductsPage({ params }: PageProps) {
     .maybeSingle();
 
   if (commerceError || !commerce) {
-    redirect("/panel");
+    redirect("/");
   }
 
   // Fetch all non-deleted products for this commerce

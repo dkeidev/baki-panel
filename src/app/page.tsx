@@ -25,7 +25,7 @@ export default async function PanelPage() {
   }
 
   if (commerce?.slug) {
-    redirect(`/panel/${commerce.slug}/products`);
+    redirect(`/${commerce.slug}/products`);
   } else {
     redirect("/auth/onboarding");
   }

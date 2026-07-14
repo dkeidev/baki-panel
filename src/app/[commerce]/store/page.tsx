@@ -30,7 +30,7 @@ export default async function StorePage({ params }: PageProps) {
     .maybeSingle();
 
   if (commerceError || !commerce) {
-    redirect("/panel");
+    redirect("/");
   }
 
   return (

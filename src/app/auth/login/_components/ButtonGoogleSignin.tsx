@@ -14,14 +14,14 @@ export default function ButtonGoogleSignin() {
       const { error } = await supabase.auth.signInWithOAuth({
         provider: "google",
         options: {
-          redirectTo: `${window.location.origin}/auth/callback?next=/panel`,
+          redirectTo: `${window.location.origin}/auth/callback?next=/`,
         },
       });
       if (error) throw error;
     } catch (err) {
       console.error("Supabase OAuth error, using developer fallback:", err);
       // Fallback redirect for developer to access /panel directly if client/credentials not set up yet
-      window.location.href = "/panel";
+      window.location.href = "/";
     } finally {
       setLoading(false);
     }

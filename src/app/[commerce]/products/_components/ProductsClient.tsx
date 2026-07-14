@@ -280,7 +280,7 @@ export default function ProductsClient({
             </div>
           </div>
           <a
-            href={`/panel/${commerce.slug}/store`}
+            href={`/${commerce.slug}/store`}
             className="w-full md:w-auto bg-amber-500 text-black hover:bg-amber-400 font-bold px-4 py-2 rounded-xl text-xs transition-all text-center flex items-center justify-center gap-1.5 cursor-pointer shadow-md shadow-amber-500/10"
           >
             <span>Completar Perfil</span>

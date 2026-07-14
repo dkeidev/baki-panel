@@ -4,9 +4,8 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: "*",
-      allow: "/",
-      disallow: ["/panel/", "/auth/"],
+      disallow: "/",
     },
-    sitemap: "https://baki.lat/sitemap.xml",
+    sitemap: "https://panel.baki.digital/sitemap.xml",
   };
 }

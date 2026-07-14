@@ -147,6 +147,6 @@ export async function completeOnboarding(_prevState: any, formData: FormData) {
     return { error: "Ocurrió un error inesperado al procesar tus datos." };
   }
 
-  // Redirect to panel (which automatically takes the user to their new commerce products page)
-  redirect("/panel");
+  // Redirect to root (which automatically takes the user to their new commerce products page)
+  redirect("/");
 }

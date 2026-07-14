@@ -19,7 +19,7 @@ export async function toggleBotState(commerceId: string, isEnabled: boolean, com
     return { error: "No se pudo cambiar el estado del bot." };
   }
 
-  revalidatePath(`/panel/${commerceSlug}/bakibot`);
+  revalidatePath(`/${commerceSlug}/bakibot`);
   return { success: true };
 }
 
@@ -68,7 +68,7 @@ export async function deleteInstanceSession(commerceSlug: string, commerceId: st
       console.error("Error deleting sessions on disconnect:", sessionError);
     }
 
-    revalidatePath(`/panel/${commerceSlug}/bakibot`);
+    revalidatePath(`/${commerceSlug}/bakibot`);
     return { success: true, data };
   } catch (err: any) {
     console.error("Error deleting instance session:", err);
